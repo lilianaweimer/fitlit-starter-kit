@@ -4,11 +4,13 @@ class UserRepository {
   }
 
   findUserData(id) {
-
+    return this.users.find(user => {
+      return user.id == id
+    })
   }
 
   findAvgStepGoal() {
-    
+
   }
 }
 

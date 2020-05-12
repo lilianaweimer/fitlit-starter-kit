@@ -31,4 +31,8 @@ describe('User', function() {
     it('should be able to have properties', function() {
       expect(user.name).to.equal("Luisa Hane")
     });
+
+    it('it should be able to find the users first name only', function() {
+      expect(user.findFirstName()).to.equal("Luisa")
+    })
 });

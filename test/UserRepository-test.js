@@ -1,3 +1,3 @@
-const UserRepository = require('./src/UserRepository')
+const UserRepository = require('../src/UserRepository')
 
-describe()
+// describe()

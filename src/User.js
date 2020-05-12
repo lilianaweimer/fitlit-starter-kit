@@ -1,5 +1,5 @@
 class User {
-  constructor(userData) {
+  constructor(userData = {}) {
     this.userData = userData
     this.id = userData['id']
     this.name = userData['name']
@@ -15,4 +15,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = User;

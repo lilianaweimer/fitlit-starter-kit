@@ -1,54 +1,49 @@
 const welcomeBox = document.querySelector('.welcome-box');
 const userCard = document.querySelector('.user-card')
-const userFixtureData = [
-  {
-    "id": 1,
-    "name": "Luisa Hane",
-    "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
-    "email": "Diana.Hayes1@hotmail.com",
-    "strideLength": 4.3,
-    "dailyStepGoal": 10000,
-    "friends": [
-      16,
-      4,
-      8
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Jarvis Considine",
-    "address": "30086 Kathryn Port, Ciceroland NE 07273",
-    "email": "Dimitri.Bechtelar11@gmail.com",
-    "strideLength": 4.5,
-    "dailyStepGoal": 5000,
-    "friends": [
-      9,
-      18,
-      24,
-      19
-    ]
-  }];
-var users = userFixtureData.map(user => {
+const userStepGoal = document.querySelector('.user-step-goal')
+
+var users = userData.map(user => {
   return new User(user)
 });
-userRepository = new UserRepository(users);
+userRepository = new UserRepository(userData);
 
 window.addEventListener('load', onLoadHandler)
 
 function onLoadHandler() {
-  loadUsername()
-  loadUsercard()
+  var user = userData[getRandomIndex(userData)]
+  loadUsername(user)
+  loadUsercard(user)
+  loadStepGoal(user)
 }
 
-function loadUsercard() {
-  userRepository.users.forEach(user => {
-    userCard.innerHTML = `<div>${userRepository.users[0]}</div>`
-  })
-
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 }
 
-function loadUsername() {
-  welcomeBox.innerText = `Welcome, ${userRepository.users[0].name}!`
+function loadUsercard(user) {
+    let userInfo = user;
+    userCard.innerHTML = `
+     <article class="widget" id="user-info">
+        Name: ${userInfo.name}
+        Address: ${userInfo.address}
+        Email: ${userInfo.email}
+      </article>
+    `;
+}
+
+function loadStepGoal(user) {
+  let userGoal = user.dailyStepGoal;
+  let avgGoal = userRepository.findAvgStepGoal();
+  userStepGoal.innerHTML = `
+    <article class="widget" id="user-step-goal">
+      Your Step Goal: ${userGoal}
+      Average Step Goal: ${avgGoal}
+    </article>
+    `;
+}
+
+function loadUsername(user) {
+  welcomeBox.innerText = `Welcome, ${user.name}!`
 }
 
 function findAllUsernames() {

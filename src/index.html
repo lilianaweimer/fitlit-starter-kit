@@ -2,12 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title>Activity Tracker</title>
   </head>
   <body>
-    <h1>Activity Tracker</h1>
-    <h2 class="welcome-box">Welcome, </h2>
-    <div class="user-card"></div>
+    <section class="header">
+      <h1>Activity Tracker</h1>
+      <h2 class="welcome-box">Welcome, </h2>
+    </section>
+      <section class="dashboard user-info">
+        <article class="user-card"></article>
+        <article class="user-step-goal"></article>
+      </section>
+      <section class="dashboard activity">
+        <h3>Activity</h3>
+        <p>I like going to the zoo</p>
+      </section>
+      <section class="dashboard hydration"></section>
+      <section class="dashboard sleep"></section>
+
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../src/User.js"></script>
     <script type="text/javascript" src="../src/UserRepository.js"></script>

@@ -42,7 +42,14 @@ function onLoadHandler() {
 
 function loadUsercard() {
   userRepository.users.forEach(user => {
-    userCard.innerHTML = `<div>${userRepository.users[0]}</div>`
+    let userInfo = userRepository.users[0];
+    userCard.innerHTML = `
+      <article class="widget" id="userInfo">
+        Name: ${userInfo.name}
+        Address: ${userInfo.address}
+        Email: ${userInfo.email}
+      </article>
+      `;
   })
 
 }

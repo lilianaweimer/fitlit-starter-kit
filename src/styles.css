@@ -1,0 +1,42 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 5fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.dashboard {
+    border: 1px solid black;
+}
+    
+.header { 
+    grid-area: 1 / 1 / 2 / 5; 
+}
+    
+.user-info { 
+    grid-area: 2 / 1 / 3 / 2; 
+}
+    
+.activity { 
+    grid-area: 2 / 2 / 3 / 3; 
+}
+    
+.hydration { 
+    grid-area: 2 / 3 / 3 / 4; 
+}
+    
+.sleep { 
+    grid-area: 2 / 4 / 3 / 5; 
+ }
+    
+    
+    
+ .user-info {
+    display: flex;
+    flex-flow: column wrap;
+}
+    
+.widget {
+
+}

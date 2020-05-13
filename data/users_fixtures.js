@@ -27,4 +27,6 @@ const userFixtures = [
     ]
   }];
 
-  module.exports = userFixtures;
+  if (typeof module !== 'undefined') {
+    module.exports = userFixtures;
+  }

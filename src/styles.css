@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
 /* $color1: #00EE6Eff; */
 /* $color2: #02DA82ff; */
 /* $color3: #04C696ff; */
@@ -17,11 +19,14 @@ body {
 }
 
 h1 {
-    font-size: 35px;
+    font-family: 'Nova Square', sans-serif;
+    font-size: 25px;
+    margin-bottom: -25px;
 }
 
 h2 {
-    font-size: 30px;
+    font-family: 'Nova Square', sans-serif;
+    font-size: 35px;
 }
 
 .dashboard {
@@ -59,6 +64,7 @@ h2 {
 } */
     
 .widget {
+    font-family: 'Mukta', sans-serif;
     font-size: 16px;
     margin: 5px 20px;
     padding: 10px;
@@ -68,6 +74,7 @@ h2 {
 }
 
 .info-header {
+    font-family: 'Nova Square', sans-serif;
     font-size: 30px;
     text-shadow: 1.5px 1.5px 2px gainsboro;
     margin: 10px; 

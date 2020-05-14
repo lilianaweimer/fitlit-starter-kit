@@ -61,5 +61,20 @@ describe('Hydration', function() {
     it('should be able to calculate a different average for fluids consumed', function() {
       expect(hydration2.calculateAvgFluidsConsumed()).to.equal(60.51)
     });
+
+    it('should be able to find the number of ounces consumed for a specific date', function() {
+      const date = "2019/06/15";
+      expect(hydration1.calculateOuncesConsumedByDay(date)).to.equal(37);
+    });
+
+    it('should be able to find the number of ounces consumed on a different date', function() {
+      const date = "2019/06/20";
+      expect(hydration2.calculateOuncesConsumedByDay(date)).to.equal(71);
+    });   
+    
+    // it('should be able to find the number of ounces consumed over seven days', function() {
+    //   const endDate = "2019/06/26";
+    //   expect(hydration1.calculateWeeklyOuncesConsumed(endDate)).to.equal(346);
+    // });
   });
 });

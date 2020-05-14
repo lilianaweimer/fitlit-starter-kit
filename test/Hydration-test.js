@@ -55,7 +55,11 @@ describe('Hydration', function() {
 
   describe('Hydration - Methods', function() {
     it('should be able to calculate average fluids consumed', function() {
-      expect(hydration1.calculateAvgFluidsConsumed()).to.equal()
+      expect(hydration1.calculateAvgFluidsConsumed()).to.equal(58.31)
+    });
+
+    it('should be able to calculate a different average for fluids consumed', function() {
+      expect(hydration2.calculateAvgFluidsConsumed()).to.equal(60.51)
     });
   });
 });

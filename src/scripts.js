@@ -1,6 +1,7 @@
 const welcomeBox = document.querySelector('.welcome-box');
 const userCard = document.querySelector('.user-card')
 const userStepGoal = document.querySelector('.user-step-goal')
+const userDailyHydration = document.querySelector('.user-daily-hydration');
 
 var users = userData.map(user => {
   return new User(user)
@@ -14,6 +15,7 @@ function onLoadHandler() {
   loadUsername(user)
   loadUsercard(user)
   loadStepGoal(user)
+  loadHydrationData(user)
 }
 
 function getRandomIndex(array) {
@@ -22,24 +24,25 @@ function getRandomIndex(array) {
 
 function loadUsercard(user) {
     let userInfo = user;
-    userCard.innerHTML = `
-     <article class="widget" id="user-info">
-        Name: ${userInfo.name}
-        Address: ${userInfo.address}
-        Email: ${userInfo.email}
-      </article>
+    userCard.innerText = `
+      Name: ${userInfo.name}
+      Address: ${userInfo.address}
+      Email: ${userInfo.email}
     `;
 }
 
 function loadStepGoal(user) {
   let userGoal = user.dailyStepGoal;
   let avgGoal = userRepository.findAvgStepGoal();
-  userStepGoal.innerHTML = `
-    <article class="widget" id="user-step-goal">
-      Your Step Goal: ${userGoal}
-      Average Step Goal: ${avgGoal}
-    </article>
-    `;
+  userStepGoal.innerText = `
+    Your Step Goal: ${userGoal}
+    Average Step Goal: ${avgGoal}
+  `;
+}
+
+function loadHydrationData(user) {
+  let userHydration = user.calculateOuncesConsumedByDay(date);
+  userDailyHydration.innerText = `Water Consumed Today: ${userHydration}oz`
 }
 
 function loadUsername(user) {
@@ -53,5 +56,3 @@ function findAllUsernames() {
 }
 
 findAllUsernames()
-
-console.log("Hello World");

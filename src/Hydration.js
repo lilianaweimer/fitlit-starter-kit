@@ -26,19 +26,16 @@ class Hydration {
     return userOunces[0].numOunces;
   }
 
-//   calculateWeeklyOuncesConsumed(endDate) {
-// //     var tomorrow = new Date();
-// // tomorrow.setDate(tomorrow.getDate() + 1);
-//     const weekEndDate = new Date(endDate);
-//     return hydrationData.reduce((totalOunces,currentHydration) => {
-//       if (currentHydration.userID === this.userID && currentHydration.date === this.date) {
-//         totalOunces += currentHydration.numOunces;
-//       }
-//       return totalOunces;
-//     });
-//     this.calculateOuncesConsumedByDay(endDate);
-//   }
-// }
+  calculateWeeklyOuncesConsumed(endDate) {
+    const userHydrations = hydrationData.filter(currentHydration => currentHydration.userID === this.userID) 
+    const endDateHydrationIndex = userHydrations.findIndex(currentHydration => currentHydration.date === endDate);
+    let totalWeeklyOunces = 0;
+    for (let i = endDateHydrationIndex; i > endDateHydrationIndex - 7; i--) {
+      totalWeeklyOunces += userHydrations[i].numOunces;
+    }
+    return totalWeeklyOunces;
+  }
+}
 
 if (typeof module !== 'undefined') {
   module.exports = Hydration;

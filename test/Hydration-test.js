@@ -72,9 +72,9 @@ describe('Hydration', function() {
       expect(hydration2.calculateOuncesConsumedByDay(date)).to.equal(71);
     });   
     
-    // it('should be able to find the number of ounces consumed over seven days', function() {
-    //   const endDate = "2019/06/26";
-    //   expect(hydration1.calculateWeeklyOuncesConsumed(endDate)).to.equal(346);
-    // });
+    it('should be able to find the number of ounces consumed over seven days', function() {
+      const endDate = "2019/06/26";
+      expect(hydration1.calculateWeeklyOuncesConsumed(endDate)).to.equal(346);
+    });
   });
 });

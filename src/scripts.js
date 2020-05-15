@@ -41,7 +41,8 @@ function loadStepGoal(user) {
 }
 
 function loadHydrationData(user) {
-  let userHydration = user.calculateOuncesConsumedByDay(date);
+  const hydration = new Hydration()
+  let userHydration = hydration.calculateOuncesConsumedByDay(date);
   userDailyHydration.innerText = `Water Consumed Today: ${userHydration}oz`
 }
 

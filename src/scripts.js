@@ -2,6 +2,7 @@ const welcomeBox = document.querySelector('.welcome-box');
 const userCard = document.querySelector('.user-card')
 const userStepGoal = document.querySelector('.user-step-goal')
 const userDailyHydration = document.querySelector('.user-daily-hydration');
+const userWeeklyHydration = document.querySelector('.user-weekly-hydration');
 
 var users = userData.map(user => {
   return new User(user)
@@ -12,10 +13,12 @@ window.addEventListener('load', onLoadHandler)
 
 function onLoadHandler() {
   var user = userData[getRandomIndex(userData)]
+  const hydration = new Hydration(user.id);
   loadUsername(user)
   loadUsercard(user)
   loadStepGoal(user)
-  loadHydrationData(user)
+  loadDailyHydrationData(hydration)
+  loadWeeklyHydrationData(hydration)
 }
 
 function getRandomIndex(array) {
@@ -40,11 +43,14 @@ function loadStepGoal(user) {
   `;
 }
 
-function loadHydrationData(user) {
-  const hydration = new Hydration()
-  let userHydration = hydration.calculateOuncesConsumedByDay(date);
+function loadDailyHydrationData(hydration) {
+  let userHydration = hydration.calculateOuncesConsumedByDay("2019/09/22");
   userDailyHydration.innerText = `Water Consumed Today: ${userHydration}oz`
-  //use the "last" date for this, make it the default (hardcode for now)
+}
+
+function loadWeeklyHydrationData(hydration) {
+  let userWeekHydration = hydration.calculateWeeklyOuncesConsumed("2019/09/22");
+  userWeeklyHydration.innerText = `Water Consumed This Week: ${userWeekHydration}oz`
 }
 
 function loadUsername(user) {

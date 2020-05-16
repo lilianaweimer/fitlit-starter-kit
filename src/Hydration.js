@@ -1,10 +1,8 @@
-// const hydrationData = require('../data/hydration.js');
 
 class Hydration {
   constructor(hydrationData, userID) {
     this.hydrationData = hydrationData
     this.userHydrations = this.findHydrationsByUserID(userID)
-    // this.userHydrations = hydrationData.filter(hydration => hydration.userID === userID);
   }
 
   findHydrationsByUserID(userID) {

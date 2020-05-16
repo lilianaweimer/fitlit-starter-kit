@@ -1,11 +1,8 @@
-const hydrationData = require('../data/hydration.js');
+// const hydrationData = require('../data/hydration.js');
 
 class Hydration {
   constructor(userID) {
     this.userHydrations = hydrationData.filter(hydration => hydration.userID === userID);
-    //only one property that takes in the user ID and = user's data for ALL TIME
-    //get ALL the hydration data points, filter w/ id
-    //data already has this info, we don't need to put it in the class
   }
 
   calculateAvgFluidsConsumed() {
@@ -21,8 +18,7 @@ class Hydration {
     const userOunces = this.userHydrations.filter(currentHydration => {
       return currentHydration.date === date;
     });
-
-    return userOunces[0].numOunces;
+    return userOunces[0]['numOunces'];
   }
 
   calculateWeeklyOuncesConsumed(endDate) {

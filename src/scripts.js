@@ -13,7 +13,7 @@ window.addEventListener('load', onLoadHandler)
 
 function onLoadHandler() {
   var user = userData[getRandomIndex(userData)]
-  const hydration = new Hydration(user.id);
+  const hydration = new Hydration(hydrationData, user.id);
   loadUsername(user)
   loadUsercard(user)
   loadStepGoal(user)

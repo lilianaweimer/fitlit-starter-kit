@@ -1,15 +1,19 @@
-// const hydrationData = require('../data/hydration.js');
 
 class Hydration {
-  constructor(userID) {
-    this.userHydrations = hydrationData.filter(hydration => hydration.userID === userID);
+  constructor(hydrationData, userID) {
+    this.hydrationData = hydrationData
+    this.userHydrations = this.findHydrationsByUserID(userID)
+  }
+
+  findHydrationsByUserID(userID) {
+    return this.hydrationData.filter(hydration => hydration.userID === userID);
   }
 
   calculateAvgFluidsConsumed() {
     let numOfUserHydrations = 0;
     return this.userHydrations.reduce((sum, currentHydration) => {
         sum += currentHydration.numOunces;
-        numOfUserHydrations++;   
+        numOfUserHydrations++;
       return sum;
     }, 0) / numOfUserHydrations;
   }

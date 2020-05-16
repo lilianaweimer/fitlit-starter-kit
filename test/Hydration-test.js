@@ -1,12 +1,13 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Hydration = require('../src/Hydration');
+const hydrationData = require('../data/hydration')
 
 describe('Hydration', function() {
   var hydration1, hydration2;
   beforeEach(function() {
-    hydration1 = new Hydration(1)
-    hydration2 = new Hydration(2)
+    hydration1 = new Hydration(hydrationData, 1)
+    hydration2 = new Hydration(hydrationData, 2)
   })
 
   it('should be a function', function() {
@@ -58,8 +59,8 @@ describe('Hydration', function() {
     it('should be able to find the number of ounces consumed on a different date', function() {
       const date = "2019/06/20";
       expect(hydration2.calculateOuncesConsumedByDay(date)).to.equal(71);
-    });   
-    
+    });
+
     it('should be able to find the number of ounces consumed over seven days', function() {
       const endDate = "2019/06/26";
       expect(hydration1.calculateWeeklyOuncesConsumed(endDate)).to.equal(346);

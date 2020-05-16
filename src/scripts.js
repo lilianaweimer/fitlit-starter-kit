@@ -44,6 +44,7 @@ function loadHydrationData(user) {
   const hydration = new Hydration()
   let userHydration = hydration.calculateOuncesConsumedByDay(date);
   userDailyHydration.innerText = `Water Consumed Today: ${userHydration}oz`
+  //use the "last" date for this, make it the default (hardcode for now)
 }
 
 function loadUsername(user) {

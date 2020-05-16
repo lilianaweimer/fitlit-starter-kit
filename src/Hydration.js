@@ -1,39 +1,36 @@
 const hydrationData = require('../data/hydration.js');
 
 class Hydration {
-  constructor(hydrationInfo) {
-    this.userID = hydrationInfo.userID
-    this.date = hydrationInfo.date
-    this.numOunces = hydrationInfo.numOunces
+  constructor(userID) {
+    this.userHydrations = hydrationData.filter(hydration => hydration.userID === userID);
+    //only one property that takes in the user ID and = user's data for ALL TIME
+    //get ALL the hydration data points, filter w/ id
+    //data already has this info, we don't need to put it in the class
   }
 
   calculateAvgFluidsConsumed() {
     let numOfUserHydrations = 0;
-    return hydrationData.reduce((sum, currentHydration) => {
-      if (currentHydration.userID === this.userID) {
+    return this.userHydrations.reduce((sum, currentHydration) => {
         sum += currentHydration.numOunces;
-        numOfUserHydrations++
-      }
+        numOfUserHydrations++;   
       return sum;
     }, 0) / numOfUserHydrations;
   }
 
   calculateOuncesConsumedByDay(date) {
-    const userOunces = hydrationData.filter(currentHydration => {
-      return currentHydration.date === date && currentHydration.userID === this.userID
+    const userOunces = this.userHydrations.filter(currentHydration => {
+      return currentHydration.date === date;
     });
 
     return userOunces[0].numOunces;
   }
 
   calculateWeeklyOuncesConsumed(endDate) {
-    const userHydrations = hydrationData.filter(currentHydration => currentHydration.userID === this.userID) 
-    const endDateHydrationIndex = userHydrations.findIndex(currentHydration => currentHydration.date === endDate);
-    let totalWeeklyOunces = 0;
-    for (let i = endDateHydrationIndex; i > endDateHydrationIndex - 7; i--) {
-      totalWeeklyOunces += userHydrations[i].numOunces;
-    }
-    return totalWeeklyOunces;
+    const endDateHydrationIndex = this.userHydrations.findIndex(currentHydration => currentHydration.date === endDate);
+    const weeklyHydrations = this.userHydrations.slice(endDateHydrationIndex - 6, endDateHydrationIndex + 1);
+    return weeklyHydrations.reduce((acc, hydration) => {
+      return acc += hydration.numOunces;
+    }, 0);
   }
 }
 

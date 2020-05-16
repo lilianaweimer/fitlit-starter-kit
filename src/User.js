@@ -14,10 +14,6 @@ class User {
     return this.name.split(' ')[0]
   }
 
-  // calculateOuncesConsumedByDay(date) {
-  //   const userOunces = this.hydrations.filter(currentHydration => currentHydration.date === date)
-  //   return userOunces[0].numOunces;
-  // }
 }
 
 if (typeof module !== 'undefined') {

@@ -6,8 +6,7 @@ const userWeeklyHydration = document.querySelector('.user-weekly-hydration');
 const userDailySleep = document.querySelector('.user-daily-sleep');
 const userWeeklySleep = document.querySelector('.user-weekly-sleep');
 const userAvgSleep = document.querySelector('.user-daily-average-sleep');
-// const userWeeklyAvgSleep = document.querySelector('.user-weekly-average-sleep');
-
+const nameHeader = document.querySelector('#name-header');
 
 var users = userData.map(user => {
   return new User(user)
@@ -84,7 +83,13 @@ function loadAvgSleepData(sleep) {
 }
 
 function loadUsername(user) {
-  welcomeBox.innerText = `Welcome, ${user.name}!`
+  let firstName = user.name.split(' ')[0];
+  //I couldn't figure out how to call our findFirstName here
+  //I think we need to figure out why our user method disappeared
+  //It seems like we're not really instantiating an instance of user
+  //But I'm not sure why
+  welcomeBox.innerText = `Welcome, ${firstName}!`;
+  nameHeader.innerText = `${firstName}`;
 }
 
 function findAllUsernames() {

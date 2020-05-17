@@ -3,6 +3,11 @@ const userCard = document.querySelector('.user-card')
 const userStepGoal = document.querySelector('.user-step-goal')
 const userDailyHydration = document.querySelector('.user-daily-hydration');
 const userWeeklyHydration = document.querySelector('.user-weekly-hydration');
+const userDailySleep = document.querySelector('.user-daily-sleep');
+const userWeeklySleep = document.querySelector('.user-weekly-sleep');
+const userAvgSleep = document.querySelector('.user-daily-average-sleep');
+// const userWeeklyAvgSleep = document.querySelector('.user-weekly-average-sleep');
+
 
 var users = userData.map(user => {
   return new User(user)
@@ -14,11 +19,15 @@ window.addEventListener('load', onLoadHandler)
 function onLoadHandler() {
   var user = userData[getRandomIndex(userData)]
   const hydration = new Hydration(hydrationData, user.id);
+  const sleep = new Sleep(sleepData, user.id)
   loadUsername(user)
   loadUsercard(user)
   loadStepGoal(user)
   loadDailyHydrationData(hydration)
   loadWeeklyHydrationData(hydration)
+  loadDailySleepData(sleep)
+  loadWeeklySleepData(sleep)
+  loadAvgSleepData(sleep)
 }
 
 function getRandomIndex(array) {
@@ -51,6 +60,27 @@ function loadDailyHydrationData(hydration) {
 function loadWeeklyHydrationData(hydration) {
   let userWeekHydration = hydration.calculateWeeklyOuncesConsumed("2019/09/22");
   userWeeklyHydration.innerText = `Water Consumed This Week: ${userWeekHydration}oz`
+}
+
+function loadDailySleepData(sleep) {
+  let userDailySleepHrs = sleep.calculateDailyHoursSlept("2019/09/22");
+  let userDailySleepQuality = sleep.calculateDailySleepQuality("2019/09/22")
+  userDailySleep.innerText = `Hours Slept Today: ${userDailySleepHrs}hrs.
+  Sleep Quality Today: ${userDailySleepQuality}`
+}
+
+function loadWeeklySleepData(sleep) {
+  let userWeeklySleepHrs = sleep.calculateWeeklyHoursSlept("2019/09/22");
+  let userWeeklySleepQuality = sleep.calculateWeeklySleepQuality("2019/09/22")
+  userWeeklySleep.innerText = `Hours Slept This Week: ${Math.floor(userWeeklySleepHrs)}hrs.
+  Sleep Quality This Week: ${Math.floor(userWeeklySleepQuality)}`
+}
+
+function loadAvgSleepData(sleep) {
+  let userAvgSleepHrs = sleep.calculateAvgDailySleep("2019/09/22");
+  let userAvgSleepQuality = sleep.calculateAvgDailySleepQuality("2019/09/22")
+  userAvgSleep.innerText = `Average Hours Slept Today: ${Math.floor(userAvgSleepHrs)}hrs.
+  Sleep Quality Today: ${Math.floor(userAvgSleepQuality)}`
 }
 
 function loadUsername(user) {

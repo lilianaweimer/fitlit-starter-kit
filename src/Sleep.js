@@ -49,20 +49,46 @@ class Sleep {
     return userSleepQuality[0]['sleepQuality'];
   }
 
+  filterWeeklySleep(endDate, sleepData) {
+    var sixDaysMillisecs = 518400000
+    let endDay = new Date(endDate)
+    return sleepData.filter(sleep => {
+      const date = new Date(sleep.date)
+      return date.getTime() <= endDay.getTime() && date.getTime() >= endDay.getTime() - sixDaysMillisecs
+    });
+
+  }
+
   calculateWeeklyHoursSlept(endDate) {
-    const endDateSleepIndex = this.userSleep.findIndex(currentSleep => currentSleep.date === endDate);
-    const weeklySleep = this.userSleep.slice(endDateSleepIndex - 6, endDateSleepIndex + 1);
+    const weeklySleep = this.filterWeeklySleep(endDate, this.userSleep);
     return weeklySleep.reduce((acc, sleep) => {
       return acc += sleep.hoursSlept;
     }, 0);
   }
 
   calculateWeeklySleepQuality(endDate) {
-    const endDateSleepQualityIndex = this.userSleep.findIndex(currentSleepQuality => currentSleepQuality.date === endDate);
-    const weeklySleepQuality = this.userSleep.slice(endDateSleepQualityIndex - 6, endDateSleepQualityIndex + 1);
+    const weeklySleepQuality = this.filterWeeklySleep(endDate, this.userSleep);
     return weeklySleepQuality.reduce((acc, sleep) => {
       return acc += sleep.sleepQuality;
     }, 0);
+  }
+
+  calculateAllAvgSleepQuality() {
+    return this.sleepData.reduce((acc, currentData) => {
+      acc += currentData.sleepQuality;
+      return acc;
+    }, 0) / 5000;
+  }
+
+  findUsersWithHighSleepQualityScores(endDate, score) {
+    const weeklySleepData = this.filterWeeklySleep(endDate, this.sleepData);
+    const weeklyDataByScore = weeklySleepData.filter(currentSleep => {
+      return currentSleep.sleepQuality > score;
+    })
+    const userIDs = weeklyDataByScore.map(currentSleep => {
+      return currentSleep.userID;
+    })
+    return Array.from(new Set(userIDs))
   }
 }
 

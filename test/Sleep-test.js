@@ -89,4 +89,13 @@ describe('Sleep', function() {
     const endDate = "2019/06/26";
     expect(sleepData1.calculateWeeklySleepQuality(endDate)).to.equal(17.3)
   });
+
+  it('should be able to find the average sleep quality for all users', function() {
+    expect(sleepData1.calculateAllAvgSleepQuality()).to.equal(2.9834400000000043)
+  });
+
+  it('should be able to find all users who average a sleep quality greater than 3 for a given week', function() {
+    const endDate = "2019/06/26"
+    expect(sleepData1.findUsersWithHighSleepQualityScores(endDate, 4.9)).to.deep.equal([37, 10, 4])
+  });
 })

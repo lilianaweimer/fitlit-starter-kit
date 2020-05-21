@@ -1,6 +1,3 @@
-// const User = require('./User');
-// console.log(User)
-
 class UserRepository {
   constructor(usersWithData) {
     this.usersWithData = usersWithData

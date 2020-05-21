@@ -4,9 +4,10 @@ const userRepository = new UserRepository(usersWithData);
 window.addEventListener('load', onLoadHandler)
 
 function onLoadHandler() {
-  var user = userRepository.usersWithData[getRandomIndex(userData)]
+  const user = userRepository.usersWithData[getRandomIndex(userData)]
   const hydration = new Hydration(hydrationData, user.id);
   const sleep = new Sleep(sleepData, user.id)
+  const activity = new Activity(activityData, user)
   loadUsername(user)
   loadUsercard(user)
   loadStepGoal(user)
@@ -16,7 +17,9 @@ function onLoadHandler() {
   loadWeeklySleepData(sleep)
   loadAvgSleepData(sleep)
   sleep.findHighestHoursSlept("2019/07/04")
-  // let something = new Activity(activityData, userData)
+  loadStepsPerDay("2019/06/15", user.id)
+  loadMinsActivePerDay("2019/06/15", user.id)
+  loadMilesWalked("2019/06/15", user.id, activity)
 }
 
 function getRandomIndex(array) {
@@ -92,6 +95,24 @@ function findAllUsernames() {
 }
 
 findAllUsernames()
+
+function loadStepsPerDay(date, userID) {
+  const filteredActivity = activityData.filter(activity => activity.date === date && activity.userID === userID)[0]
+  const userDailySteps = document.querySelector('.user-daily-steps')
+  userDailySteps.innerText = `You walked ${filteredActivity.numSteps} today!`
+}
+
+function loadMinsActivePerDay(date, userID) {
+  const filteredMinsActivity = activityData.filter(activity => activity.date === date && activity.userID === userID)[0]
+  const userDailyMinsActive = document.querySelector('.user-daily-mins-active')
+  userDailyMinsActive.innerText = `You were active for ${filteredMinsActivity.minutesActive} minutes today!`
+}
+
+function loadMilesWalked(date, userID, activity) {
+  const filteredMilesWalked = activityData.filter(activity => activity.date === date && activity.userID === userID)[0]
+  const userDailyMiles = document.querySelector('.user-daily-miles-walked')
+  userDailyMiles.innerText = `You walked ${activity.calculateMilesWalked(date).toFixed(2)} miles today!`
+}
 
 if (typeof module !== 'undefined') {
   module.exports = userData;

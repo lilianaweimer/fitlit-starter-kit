@@ -56,7 +56,6 @@ class Sleep {
       const date = new Date(sleep.date)
       return date.getTime() <= endDay.getTime() && date.getTime() >= endDay.getTime() - sixDaysMillisecs
     });
-
   }
 
   calculateWeeklyHoursSlept(endDate) {
@@ -90,7 +89,16 @@ class Sleep {
     })
     return Array.from(new Set(userIDs))
   }
+
+  findHighestHoursSlept(date) {
+    const sleepDataForDate = this.sleepData.filter(sleep => sleep.date === date);
+    const hoursOfSleep = sleepDataForDate.map(data => data.hoursSlept)
+    const sortedHours = hoursOfSleep.sort((a, b) => a - b)
+    return sortedHours[49]
+    //COME BACK, MAKE THIS MORE DYNAMIC!//
+  }
 }
+
 
 if (typeof module !== 'undefined') {
   module.exports = Sleep;

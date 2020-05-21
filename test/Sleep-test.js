@@ -98,4 +98,9 @@ describe('Sleep', function() {
     const endDate = "2019/06/26"
     expect(sleepData1.findUsersWithHighSleepQualityScores(endDate, 4.9)).to.deep.equal([37, 10, 4])
   });
+
+  it('should be able to find find the users who slept the most number of hours', function() {
+    const date = "2019/07/04"
+    expect(sleepData1.findHighestHoursSlept(date)).to.equal(10.9)
+  });
 })

@@ -7,10 +7,7 @@ const userData = require('../data/users_fixtures')
 describe('UserRepository', function() {
   var userRepository;
   beforeEach(function() {
-    users = userData.map(user => {
-      return new User(user)
-    });
-    userRepository = new UserRepository(users);
+    userRepository = new UserRepository(userData);
   });
 
   it('should be a function', function() {

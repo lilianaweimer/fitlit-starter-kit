@@ -1,20 +1,22 @@
+// const User = require('./User');
+// console.log(User)
+
 class UserRepository {
-  constructor(users) {
-    this.users = users
+  constructor(usersWithData) {
+    this.usersWithData = usersWithData
   }
 
   findUserData(id) {
-    return this.users.find(user => {
-      return user.id == id
-    })
+    return this.usersWithData.find(user => {
+      return user.id == id;
+    });
   }
 
   findAvgStepGoal() {
-    return this.users.reduce((acc, user) => {
-      acc += user.dailyStepGoal
-
+    return this.usersWithData.reduce((acc, user) => {
+      acc += user.dailyStepGoal;
       return acc;
-    }, 0) / this.users.length;
+    }, 0) / this.usersWithData.length;
   }
 }
 

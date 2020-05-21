@@ -7,13 +7,11 @@ class User {
     this.strideLength = userData['strideLength']
     this.dailyStepGoal = userData['dailyStepGoal']
     this.friends = userData['friends']
-    //this.hydrations = [...hydrationsData.filter(hydration => hydration.userID === this.id)]
   }
 
   findFirstName() {
     return this.name.split(' ')[0]
   }
-
 }
 
 if (typeof module !== 'undefined') {

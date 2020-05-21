@@ -1,14 +1,10 @@
-const userRepo = require('../src/UserRepository')
-
-const userRepository = new UserRepository(userData);
-// var users = userData.map(user => {
-//   return new User(user)
-// });
+const usersWithData = userData.map(data => new User(data));
+const userRepository = new UserRepository(usersWithData);
 
 window.addEventListener('load', onLoadHandler)
 
 function onLoadHandler() {
-  var user = userData[getRandomIndex(userData)]
+  var user = userRepository.usersWithData[getRandomIndex(userData)]
   const hydration = new Hydration(hydrationData, user.id);
   const sleep = new Sleep(sleepData, user.id)
   loadUsername(user)
@@ -84,18 +80,13 @@ function loadAvgSleepData(sleep) {
 function loadUsername(user) {
   const nameHeader = document.querySelector('#name-header');
   const welcomeBox = document.querySelector('.welcome-box');
-  let firstName = user.name.split(' ')[0];
-  // console.log(user.findFirstName())
-  //I couldn't figure out how to call our findFirstName here
-  //I think we need to figure out why our user method disappeared
-  //It seems like we're not really instantiating an instance of user
-  //But I'm not sure why
+  let firstName = user.findFirstName();
   welcomeBox.innerText = `Welcome, ${firstName}!`;
   nameHeader.innerText = `${firstName}`;
 }
 
 function findAllUsernames() {
-  return userRepository.users.map(user => {
+  return userRepository.usersWithData.map(user => {
    return user.name
   })
 }

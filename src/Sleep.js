@@ -95,7 +95,6 @@ class Sleep {
     const hoursOfSleep = sleepDataForDate.map(data => data.hoursSlept)
     const sortedHours = hoursOfSleep.sort((a, b) => a - b)
     return sortedHours[49]
-    //COME BACK, MAKE THIS MORE DYNAMIC!//
   }
 }
 

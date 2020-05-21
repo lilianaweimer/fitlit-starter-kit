@@ -1,6 +1,3 @@
-// const userData = require('./scripts.js')
-// const User = require('../src/User')
-
 class Activity {
   constructor(activityData, userData) {
     this.activityData = activityData
